@@ -1,22 +1,22 @@
 from tkinter import *
 import pygame
+from pygame.locals import *
 
 
 # initialise pygame
 pygame.init()
 
 # creating the screen
-width = 1000
-height = 750
+width, height = 1000, 750
 
 screen = pygame.display.set_mode((width, height))
 
-background = pygame.image.load('RH sprites/Background scrolling camera.jpg')
-backgorund = pygame.transform.scale(background, (width, height))
+background = pygame.image.load('Images/Background scrolling camera.jpeg')
+background = pygame.transform.scale(background, (width, height))
 
 # title and icon
 pygame.display.set_caption("Royal Hackaway Project")
-icon = pygame.image.load('RH sprites/gameIcon.gif')
+icon = pygame.image.load('Images/gameIcon.gif')
 pygame.display.set_icon(icon)
 
 # game loop
