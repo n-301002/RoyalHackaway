@@ -19,6 +19,16 @@ pygame.display.set_caption("Royal Hackaway Project")
 icon = pygame.image.load('Images/gameIcon.gif')
 pygame.display.set_icon(icon)
 
+# instruction screen
+
+
+def instructions():
+    header = pygame.image.load('Images/Instructions/howToPlay.png')
+    screen.blit(header, ((width/4)-30, 50))
+    instructions = pygame.image.load('Images/Instructions/instructions.png')
+    screen.blit(instructions, ((width/4), (height/4) + 30))
+
+
 # game loop
 running = True
 bg_loop = 0
@@ -31,6 +41,8 @@ while running:
         screen.blit(background, (width + bg_loop, 0))
         bg_loop = 0
     bg_loop -= 1
+
+    instructions()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
