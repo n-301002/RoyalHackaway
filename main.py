@@ -1,4 +1,3 @@
-from tkinter import *
 import pygame
 from pygame.locals import *
 
