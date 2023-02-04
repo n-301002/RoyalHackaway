@@ -12,7 +12,7 @@ pygame.display.set_caption("Dino Sprites")
 clock = pygame.time.Clock()
 FPS = 60
 
-sprite_sheet_image = pygame.image.load('img/blueDino.png').convert_alpha()
+sprite_sheet_image = pygame.image.load('Images/blueDino.png').convert_alpha()
 sprite_sheet = spriteSheet.SpriteSheet(sprite_sheet_image)
 
 clock = pygame.time.Clock()
