@@ -24,9 +24,13 @@ pygame.display.set_icon(icon)
 
 def instructions():
     header = pygame.image.load('Images/Instructions/howToPlay.png')
-    screen.blit(header, ((width/4)-30, 50))
+    screen.blit(header, ((width/4)-50, 50))
     instructions = pygame.image.load('Images/Instructions/instructions.png')
-    screen.blit(instructions, ((width/4), (height/4) + 30))
+    screen.blit(instructions, ((width/4)-25, (height/4) + 50))
+    back = pygame.image.load('Images/Instructions/back.png')
+    screen.blit(back, ((width/16), height - 100))
+    nextbutton = pygame.image.load('Images/Instructions/next.png')
+    screen.blit(nextbutton, ((13*(width/16)), height - 100))
 
 
 # game loop
