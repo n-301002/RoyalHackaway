@@ -299,3 +299,85 @@ class Interaction:
         self.wrap_player(canvas)
         self.player.update()
         self.player.move()
+
+
+class Game:
+    def __init__(self):
+        self.player = Sprite.Player(WIDTH//2, HEIGHT//2)
+        self.wall = Boundary(0, 1, 'Grey')
+        self.interaction = Interaction(self.player1, self.wall)
+        self.game_on = False
+
+    def draw(self, canvas):
+        self.interaction.player_collision()
+        self.interaction.update(canvas)
+
+    def update(self, canvas):
+        global GAME_BEGIN, LIVES_PLAYER1, SCORE_PLAYER1
+        if LIVES_PLAYER1 < 1:
+            self.game_on = False
+            if LIVES_PLAYER2 < 1:
+                self.player1_won(canvas)
+
+        elif SCORE_PLAYER1 > 29:
+            self.game_on = False
+            if SCORE_PLAYER1 > 29:
+                self.player1_won(canvas)
+
+        else:
+            self.game_on = True
+            self.draw(canvas)
+            if self.click() == False:
+                self.reset()
+
+        return GAME_BEGIN
+
+    def set_score(self):
+        global LIVES_PLAYER1, LIVES_PLAYER2, SCORE_PLAYER1, SCORE_PLAYER2
+        LIVES_PLAYER1 = 5
+        LIVES_PLAYER2 = 5
+        SCORE_PLAYER1 = 0
+        SCORE_PLAYER2 = 0
+
+    def reset(self):
+        global GAME_BEGIN, GAME_HELP, LIVES_PLAYER1, LIVES_PLAYER2, SCORE_PLAYER1, SCORE_PLAYER2
+        if GAME_BEGIN == True:
+            self.set_score()
+            GAME_BEGIN = False
+
+        return GAME_BEGIN
+
+    def adding_obstacles(self):
+        if self.game_on == True:
+            self.interaction.adding_balls()
+        else:
+            self.clear_canvas()
+
+    def clear_canvas(self):
+        if self.interaction.is_ball_on_canvas() == True:
+            self.interaction.removing_balls()
+
+    def game_mode(self, canvas):
+        self.background.draw(canvas)
+        self.welcome.player_mode(canvas)
+        self.click()
+
+    def start(self, canvas):
+        self.background.draw(canvas)
+        self.welcome.draw(canvas)
+        self.set_score()
+
+    def help_screen(self, canvas):
+        self.background.draw(canvas)
+        self.welcome.instruction_screen(canvas)
+
+    def player1_won(self, canvas):
+        global GAME_BEGIN, count
+        WIN_SOUND.play()
+        count += 1
+        self.background.draw(canvas)
+        self.welcome.player1_won(canvas)
+        if self.click() == False or count % 300 == 0:
+            self.instruction_help()
+            self.reset()
+        return GAME_BEGIN
