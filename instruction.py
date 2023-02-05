@@ -1,7 +1,6 @@
 import pygame
 from pygame.locals import *
 
-
 # initialise pygame
 pygame.init()
 
@@ -52,7 +51,3 @@ while running:
             running = False
 
     pygame.display.update()
-
-
-class Instruction:
-    pass
