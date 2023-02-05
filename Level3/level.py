@@ -1,7 +1,28 @@
 import pygame
 import random
-import Level3.vector as Vector
-import Level3.sprite as Sprite
+import vector as Vector
+import sprite as Sprite
+import spriteSheet as spriteSheet
+
+pygame.init()
+
+SCREEN_WIDTH = 1000
+SCREEN_HEIGHT = 600
+
+PLAYER_CENTRE = (256, 256)
+PLAYER_DIMS = (512, 512)
+
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+cardboard_box = pygame.image.load('Images/cardboard_box.png').convert_alpha()
+glass_bottle = pygame.image.load('Images/glass_bottle.png').convert_alpha()
+glass_jar = pygame.image.load('Images/glass_jar.png').convert_alpha()
+newspaper = pygame.image.load('Images/newspaper.png').convert_alpha()
+plastic_bottle = pygame.image.load('Images/plastic_bottle.png').convert_alpha()
+tin = pygame.image.load('Images/tin.png').convert_alpha()
+
+recycle_item = pygame.image.load('Images/recycle_items.png').convert_alpha()
+sprite_sheet = spriteSheet.SpriteSheet(recycle_item)
 
 WIDTH = 1000
 HEIGHT = 750
@@ -373,7 +394,7 @@ class Game:
 
     def player1_won(self, canvas):
         global GAME_BEGIN, count
-        WIN_SOUND.play()
+        # WIN_SOUND.play()
         count += 1
         self.background.draw(canvas)
         self.welcome.player1_won(canvas)
