@@ -3,8 +3,8 @@ import spriteSheet
 
 pygame.init()
 
-SCREEN_WIDTH = 500
-SCREEN_HEIGHT = 400
+SCREEN_WIDTH = 1000
+SCREEN_HEIGHT = 600
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Dino Sprites")
@@ -24,7 +24,7 @@ WHITE = (255, 255, 255)
 
 class Player():
     def __init__(self, x, y):
-        self.image = sprite_sheet.get_image(0, 24, 24, 4, BLACK)
+        self.image = sprite_sheet.get_image(0, 24, 24, 5, BLACK)
         self.width = 24 * 3
         self.height = 24 * 3
         self.rect = pygame.Rect(0, 0, self.width, self.height)
@@ -73,8 +73,7 @@ class Player():
     def draw(self):
         img = pygame.transform.flip(self.image, self.flip, False)
         img.set_colorkey(BLACK)
-        screen.blit(img, (self.rect.x - 12, self.rect.y - 12))
-        pygame.draw.rect(screen, WHITE, self.rect, 2)
+        screen.blit(img, (self.rect.x - 24, self.rect.y - 24))
         
         
 dino = Player(SCREEN_WIDTH//2, SCREEN_HEIGHT//2)
