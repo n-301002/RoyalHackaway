@@ -1,7 +1,7 @@
 import pygame
 import random
 import Level3.vector as Vector
-import Level3.sprite as Sprite
+import Level3.sprite.sprite as Sprite
 
 WIDTH = 1000
 HEIGHT = 750
@@ -299,3 +299,17 @@ class Interaction:
         self.wrap_player(canvas)
         self.player.update()
         self.player.move()
+
+class Game:
+    def __init__(self) -> None:
+        pass
+    
+    def adding_obstacles(self):
+        if self.game_on == True:
+            self.interaction.adding_balls()
+        else:
+            self.clear_canvas()
+        
+    def clear_canvas(self):
+        if self.interaction.is_ball_on_canvas() == True:
+            self.interaction.removing_balls()

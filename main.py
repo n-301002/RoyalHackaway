@@ -1,13 +1,13 @@
 import pygame
 from pygame.locals import *
-from sprite import sprite
+from Level3 import game
 
 # initialise pygame
 pygame.init()
 
 
 # creating the screen
-width, height = 1000, 750
+width, height = 1000, 600
 
 screen = pygame.display.set_mode((width, height))
 
@@ -19,13 +19,7 @@ pygame.display.set_caption("Royal Hackaway Project")
 icon = pygame.image.load('Images/gameIcon.gif')
 pygame.display.set_icon(icon)
 
-player = sprite.Player(1, 600)
-# ball = game.Ball()
-
-
-def player_movement():
-    player.move()
-    player.draw()
+game = game.Game()
 
 
 # game loop
@@ -41,7 +35,8 @@ while running:
         bg_loop = 0
     bg_loop -= 1
 
-    player_movement()
+    game.player_movement(screen)
+    game.adding_obstacles()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

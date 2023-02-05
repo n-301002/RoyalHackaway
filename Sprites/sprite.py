@@ -1,5 +1,5 @@
 import pygame
-import spriteSheet
+from Sprites import spriteSheet
 
 pygame.init()
 
@@ -18,9 +18,10 @@ sprite_sheet = spriteSheet.SpriteSheet(sprite_sheet_image)
 clock = pygame.time.Clock()
 FPS = 60
 
-BG = (159, 226, 191) #seafoam
+BG = (159, 226, 191)  # seafoam
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+
 
 class Player():
     def __init__(self, x, y):
@@ -28,14 +29,14 @@ class Player():
         self.width = 24 * 3
         self.height = 24 * 3
         self.rect = pygame.Rect(0, 0, self.width, self.height)
-        self.rect.center = (x , y)
+        self.rect.center = (x, y)
         self.flip = False
-        
+
     def move(self):
-        
+
         change_x = 0
         change_y = 0
-        
+
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT]:
             self.rect.x -= 10
@@ -55,45 +56,43 @@ class Player():
                 self.flip = True
             else:
                 self.flip = False
-        
+
         if self.rect.left + change_x < 0:
             change_x = -self.rect.left
         if self.rect.right + change_x > SCREEN_WIDTH:
             change_x = SCREEN_WIDTH - self.rect.right
-        
+
         if self.rect.top + change_y < 0:
             change_y = -self.rect.top
-        if self.rect.bottom + change_y > SCREEN_HEIGHT:
-            change_y = SCREEN_HEIGHT - self.rect.bottom
-        
+        if self.rect.bottom + change_y > 480:
+            change_y = 480 - self.rect.bottom
+
         self.rect.x += change_x
         self.rect.y += change_y
-        
-    
+
     def draw(self):
         img = pygame.transform.flip(self.image, self.flip, False)
         img.set_colorkey(BLACK)
         screen.blit(img, (self.rect.x - 24, self.rect.y - 24))
-        
-        
-dino = Player(SCREEN_WIDTH//2, SCREEN_HEIGHT//2)
-
-run = True
-while run:
-    screen.fill(BG)
-    
-    clock.tick(FPS)
-    
-    dino.move()
-    dino.draw()
 
 
-    
-    #event handler
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False     
-    
-    pygame.display.update()
+# dino = Player(SCREEN_WIDTH//2, SCREEN_HEIGHT//2)
 
-pygame.quit()
+# run = True
+# while run:
+#     screen.fill(BG)
+
+#     clock.tick(FPS)
+
+#     dino.move()
+#     dino.draw()
+
+
+#     #event handler
+#     for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#             run = False
+
+#     pygame.display.update()
+
+# pygame.quit()
