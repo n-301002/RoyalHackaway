@@ -1,6 +1,5 @@
 import pygame
 from pygame.locals import *
-from sprite import sprite
 
 # initialise pygame
 pygame.init()
@@ -18,13 +17,18 @@ pygame.display.set_caption("Royal Hackaway Project")
 icon = pygame.image.load('Images/gameIcon.gif')
 pygame.display.set_icon(icon)
 
-player = sprite.Player(1, 600)
-# ball = game.Ball()
+# instruction screen
 
 
-def player_movement():
-    player.move()
-    player.draw()
+def instructions():
+    header = pygame.image.load('Images/Instructions/howToPlay.png')
+    screen.blit(header, ((width/4)-50, 50))
+    instructions = pygame.image.load('Images/Instructions/instructions.png')
+    screen.blit(instructions, ((width/4)-25, (height/4) + 50))
+    back = pygame.image.load('Images/Instructions/back.png')
+    screen.blit(back, ((width/16), height - 100))
+    nextbutton = pygame.image.load('Images/Instructions/next.png')
+    screen.blit(nextbutton, ((13*(width/16)), height - 100))
 
 
 # game loop
@@ -40,7 +44,7 @@ while running:
         bg_loop = 0
     bg_loop -= 1
 
-    player_movement()
+    instructions()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
